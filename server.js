@@ -19,6 +19,9 @@ app.get('/', function (req, res) {
 const stingController = require("./controllers/stingController");
 app.use("/stings", stingController);
 
+// const solutionsController = require("./controllers/solutionsController");
+// app.use("/stings/solutions", solutionsController);
+
 app.listen(PORT, () => {
     console.log(`Listening in on port: ${PORT}`)
 })

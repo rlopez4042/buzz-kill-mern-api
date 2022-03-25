@@ -1,0 +1,56 @@
+// const express = require("express");
+// const router = express.Router();
+// const Solution = require("./../models/SolutionSchema");
+
+// //Create Sting
+// router.post("/", (req, res) => {
+//   const data = req.body;
+//   Solution.create(data).then((solution) =>
+//     res.json({
+//       status: 200,
+//       solution: solution,
+//     })
+//   );
+// });
+
+// //Read all Stings
+// router.get("/", (req, res) => {
+//     Solution.find().then((solutions) =>
+//     res.json({
+//       status: 200,
+//       solutions: solutions,
+//     })
+//   );
+// });
+// //Read one by ID
+// router.get("/:id", (req, res) => {
+//     Solution.findById(req.params.id).then((solution) => {
+//     res.json({
+//       status: 200,
+//       solution: solution,
+//     });
+//   });
+// });
+
+// //Update one by ID
+// router.patch("/:id", (req, res) => {
+//     Solution.findByIdAndUpdate(req.params.id, req.body).then((solution) => {
+//     res.json({
+//       status: 200,
+//       msg: "item update",
+//       solution: solution,
+//     });
+//   });
+// });
+
+// //Delete one Sting by ID
+// router.delete("/:id", (req, res) => {
+//     Solution.findByIdAndDelete(req.params.id).then((solution) => {
+//     res.json({
+//       status: 200,
+//       solution: solution,
+//     });
+//   });
+// });
+
+// module.exports = router;

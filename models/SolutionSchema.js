@@ -2,7 +2,7 @@ const mongoose = require("./../connection");
 const Schema = mongoose.Schema;
 
 const solutionSchema = new Schema({
-  name: String,
+  author: String,
   date: String,
   solution: String,
 });

@@ -1,6 +1,6 @@
 const mongoose = require("./../connection");
 const Schema = mongoose.Schema;
-import solutionSchema from "./SolutionSchema";
+const solutionSchema = require("./SolutionSchema");
 
 const stingSchema = new Schema({
   author: String,
