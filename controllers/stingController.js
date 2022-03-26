@@ -22,6 +22,7 @@ router.get("/", (req, res) => {
     })
   );
 });
+
 //Read one by ID
 router.get("/:id", (req, res) => {
   Sting.findById(req.params.id).then((sting) => {
@@ -53,17 +54,27 @@ router.delete("/:id", (req, res) => {
   });
 });
 
-router.put("/add/:id", (req, res) => {
-  Sting.findByIdAndUpdate(
-    {
-      _id: req.params.id,
-    },
-    {
-      $push: { solutions: req.body },
-    },
-    {
-      new: true,
-    }
+//Add solution to Sting
+router.put("/:id/add", (req, res) => {
+  Sting.findByIdAndUpdate
+  (
+    { _id: req.params.id },
+    { $push: { solutions: req.body } },
+    { new: true }
+  )
+    .then((sting) => res.json({ status: 200, sting: sting }))
+    .catch((error) => console.log(error));
+});
+
+//This does not work at all
+//Need to trouble shoot on monday
+//Delete a solution
+router.put("/:id/delete/:id", async (req, res) => {
+  Sting.findByIdAndUpdate
+  (
+    { _id: req.params.id },
+    { $pull: { solutions: { _id: req.params.id } } },
+    { new: true }
   )
     .then((sting) => res.json({ status: 200, sting: sting }))
     .catch((error) => console.log(error));
