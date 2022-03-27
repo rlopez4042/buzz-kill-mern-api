@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const Sting = require("./../models/StingSchema");
+// const Solution = require("./../models/SolutionSchema")
+const authenticate = require("../middleware/authenticate");
 
 //Create Sting
-router.post("/", (req, res) => {
+router.post("/", authenticate, (req, res) => {
   const data = req.body;
   Sting.create(data).then((sting) =>
     res.json({
@@ -14,7 +16,7 @@ router.post("/", (req, res) => {
 });
 
 //Read all Stings
-router.get("/", (req, res) => {
+router.get("/", authenticate, (req, res) => {
   Sting.find().then((stings) =>
     res.json({
       status: 200,
@@ -24,7 +26,7 @@ router.get("/", (req, res) => {
 });
 
 //Read one by ID
-router.get("/:id", (req, res) => {
+router.get("/:id", authenticate, (req, res) => {
   Sting.findById(req.params.id).then((sting) => {
     res.json({
       status: 200,
@@ -34,7 +36,7 @@ router.get("/:id", (req, res) => {
 });
 
 //Update one by ID
-router.patch("/:id", (req, res) => {
+router.patch("/:id", authenticate, (req, res) => {
   Sting.findByIdAndUpdate(req.params.id, req.body).then((sting) => {
     res.json({
       status: 200,
@@ -55,9 +57,8 @@ router.delete("/:id", (req, res) => {
 });
 
 //Add solution to Sting
-router.put("/:id/add", (req, res) => {
-  Sting.findByIdAndUpdate
-  (
+router.put("/:id/add", authenticate, (req, res) => {
+  Sting.findByIdAndUpdate(
     { _id: req.params.id },
     { $push: { solutions: req.body } },
     { new: true }
@@ -66,14 +67,23 @@ router.put("/:id/add", (req, res) => {
     .catch((error) => console.log(error));
 });
 
-//This does not work at all
-//Need to trouble shoot on monday
-//Delete a solution
-router.put("/:id/delete/:id", async (req, res) => {
-  Sting.findByIdAndUpdate
-  (
+//Edit a solution
+router.put("/:id/edit/:solutionsID", async (req, res) => {
+  Sting.findByIdAndUpdate(
     { _id: req.params.id },
-    { $pull: { solutions: { _id: req.params.id } } },
+    { solutions: {_id: req.params.solutionsID} },
+    { $push: req.body },
+    { new: true }
+  )
+    .then((sting) => res.json({ status: 200, sting: sting }))
+    .catch((error) => console.log(error));
+});
+
+//Delete a solution
+router.put("/:id/delete/:solutionsID", async (req, res) => {
+  Sting.findByIdAndUpdate(
+    { _id: req.params.id },
+    { $pull: { solutions: {_id: req.params.solutionsID} } },
     { new: true }
   )
     .then((sting) => res.json({ status: 200, sting: sting }))
