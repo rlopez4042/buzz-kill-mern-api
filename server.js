@@ -22,8 +22,8 @@ app.use("/stings", stingController);
 const authController = require("./routes/auth");
 app.use("/home", authController);
 
-// const projectController = require("./controllers/projectController");
-// app.use("/projects", projectController);
+const projectController = require("./controllers/projectController");
+app.use("/projects", projectController);
 
 app.listen(PORT, () => {
   console.log(`Listening in on port: ${PORT}`);

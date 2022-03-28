@@ -5,12 +5,21 @@ const Project = require("./../models/projectSchema");
 const authenticate = require("../middleware/authenticate");
 
 //Create Sting
-router.post("/", authenticate, (req, res) => {
+router.post("/", (req, res) => {
   const data = req.body;
   Project.create(data).then((project) =>
     res.json({
       status: 200,
       project: project,
+    })
+  );
+});
+
+router.get("/", (req, res) => {
+  Project.find().then((projects) =>
+    res.json({
+      status: 200,
+      projects: projects,
     })
   );
 });

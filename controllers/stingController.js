@@ -5,7 +5,7 @@ const Sting = require("./../models/StingSchema");
 const authenticate = require("../middleware/authenticate");
 
 //Create Sting
-router.post("/", authenticate, (req, res) => {
+router.post("/", (req, res) => {
   const data = req.body;
   Sting.create(data).then((sting) =>
     res.json({
@@ -16,7 +16,7 @@ router.post("/", authenticate, (req, res) => {
 });
 
 //Read all Stings
-router.get("/", authenticate, (req, res) => {
+router.get("/", (req, res) => {
   Sting.find().then((stings) =>
     res.json({
       status: 200,
@@ -26,7 +26,7 @@ router.get("/", authenticate, (req, res) => {
 });
 
 //Read one by ID
-router.get("/:id", authenticate, (req, res) => {
+router.get("/:id", (req, res) => {
   Sting.findById(req.params.id).then((sting) => {
     res.json({
       status: 200,
@@ -36,7 +36,7 @@ router.get("/:id", authenticate, (req, res) => {
 });
 
 //Update one by ID
-router.patch("/:id", authenticate, (req, res) => {
+router.patch("/:id", (req, res) => {
   Sting.findByIdAndUpdate(req.params.id, req.body).then((sting) => {
     res.json({
       status: 200,
@@ -57,22 +57,10 @@ router.delete("/:id", (req, res) => {
 });
 
 //Add solution to Sting
-router.put("/:id/add", authenticate, (req, res) => {
+router.put("/:id/add", (req, res) => {
   Sting.findByIdAndUpdate(
     { _id: req.params.id },
     { $push: { solutions: req.body } },
-    { new: true }
-  )
-    .then((sting) => res.json({ status: 200, sting: sting }))
-    .catch((error) => console.log(error));
-});
-
-//Edit a solution
-router.put("/:id/edit/:solutionsID", async (req, res) => {
-  Sting.findByIdAndUpdate(
-    { _id: req.params.id },
-    { solutions: {_id: req.params.solutionsID} },
-    { $push: req.body },
     { new: true }
   )
     .then((sting) => res.json({ status: 200, sting: sting }))
@@ -83,7 +71,7 @@ router.put("/:id/edit/:solutionsID", async (req, res) => {
 router.put("/:id/delete/:solutionsID", async (req, res) => {
   Sting.findByIdAndUpdate(
     { _id: req.params.id },
-    { $pull: { solutions: {_id: req.params.solutionsID} } },
+    { $pull: { solutions: { _id: req.params.solutionsID } } },
     { new: true }
   )
     .then((sting) => res.json({ status: 200, sting: sting }))
