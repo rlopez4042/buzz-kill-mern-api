@@ -17,8 +17,8 @@ app.get("/", function (req, res) {
   res.send("hello, earth!");
 });
 
-const projectController = require("./controllers/projectController");
-app.use("/projects", projectController);
+const Sting = require("./controllers/V1controllers/V1StingController");
+app.use("/stings", Sting);
 
 app.listen(PORT, () => {
   console.log(`Listening in on port: ${PORT}`);

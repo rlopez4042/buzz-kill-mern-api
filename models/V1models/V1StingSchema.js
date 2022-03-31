@@ -1,16 +1,16 @@
-const mongoose = require("./../connection");
-const solutionSchema = require("./SolutionSchema");
+const mongoose = require("../../connection");
+const v1SolutionSchema = require("./V1SolutionSchema");
 
-const stingSchema = new mongoose.Schema({
+const v1StingSchema = new mongoose.Schema({
   //Author for the Sting / who needs help
   author: { type: String },
   //Date the ticket was created
-  date: { type: String },
+  time: { type: String },
   //Block of code for where the issue is
   codeBlock: { type: String },
   //Desciption for intent and issue description
   description: { type: String },
   //isComplete: { type: Boolean, default: false },
-  solutions: [solutionSchema],
+  solutions: [v1SolutionSchema],
 });
-module.exports = stingSchema;
+module.exports = mongoose.model("Sting", v1StingSchema);
