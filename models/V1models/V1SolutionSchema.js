@@ -6,9 +6,11 @@ const V1SolutionSchema = new mongoose.Schema({
   //Date the ticket was created
   time: { type: String },
   //Block of code for updated solution to try
-  solutionCodeBlock: { type: String },
+  codeBlock: { type: String },
   //Desciption of solution idea
-  solutionDescription: { type: String },
+  description: { type: String },
+  //If true, proposed solution is Correcnt
+  solution: { type: Boolean, default: false },
 });
 
 module.exports = V1SolutionSchema;

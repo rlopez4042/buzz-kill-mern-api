@@ -32,3 +32,4 @@ const authenticate = asyncHandler(async (req, res, next) => {
 })
 
 module.exports = { authenticate }
+//Resource:https://www.youtube.com/watch?v=mvfsC66xqj0&t=2363s

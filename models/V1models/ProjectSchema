@@ -1,5 +1,5 @@
-const mongoose = require("./../connection");
-const stingSchema = require("./StingSchema");
+const mongoose = require("../../connection");
+// const stingSchema = require("./V1StingSchema");
 
 const projectSchema = new mongoose.Schema({
   //Person who creates the project 
@@ -10,9 +10,5 @@ const projectSchema = new mongoose.Schema({
   projectDescription: { type: String },
   //Links for project repository(s)
   repoLink: { type: String },
-  //Members in the project
-  // members: [{teamMember: { type: String }}],
-  //Trouble tickets within the project
-  stings: [stingSchema],
 });
 module.exports = mongoose.model("Project", projectSchema);
