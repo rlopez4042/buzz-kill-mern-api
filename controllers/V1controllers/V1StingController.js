@@ -55,7 +55,7 @@ router.patch("/:id", authenticate, (req, res) => {
         id: data,
       });
     } else {
-      console.log("Cannot patch.")
+      console.log("Cannot patch.");
     }
   });
 });
@@ -73,7 +73,7 @@ router.delete("/:id", authenticate, (req, res) => {
         id: data,
       });
     } else {
-      console.log("Cannot delete.")
+      console.log("Cannot delete.");
     }
   });
 });
@@ -122,28 +122,24 @@ router.put(
 //*--* Some working functionality for after V1 completion. *--*//
 
 //Read all stings by authorID so users can see their own tickets
-router.get("/project/:projectID", 
-  (req, res) => {
-    Sting.find({ projectID: { _id: req.params.projectID } } ).then((stings) => {
-      res.json({
-        status: 200,
-        sting: stings,
-      });
+router.get("/project/:projectID", (req, res) => {
+  Sting.find({ projectID: { _id: req.params.projectID } }).then((stings) => {
+    res.json({
+      status: 200,
+      sting: stings,
     });
-  }
-);
+  });
+});
 
 // Read all stings by authorID so users can see their own tickets
-router.get("/profile/:authorID", 
-  (req, res) => {
-    // let id = req.params.id;
-    Sting.find({ authorID: { _id: req.params.authorID } }).then((stings) => {
-      res.json({
-        status: 200,
-        sting: stings,
-      });
+router.get("/profile/:authorID", (req, res) => {
+  // let id = req.params.id;
+  Sting.find({ authorID: { _id: req.params.authorID } }).then((stings) => {
+    res.json({
+      status: 200,
+      sting: stings,
     });
-  }
-);
+  });
+});
 
 module.exports = router;
