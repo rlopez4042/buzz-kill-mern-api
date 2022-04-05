@@ -1,5 +1,4 @@
 const mongoose = require("../../connection");
-// const stingSchema = require("./V1StingSchema");
 
 const projectSchema = new mongoose.Schema({
   //Person who creates the project

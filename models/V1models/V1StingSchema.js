@@ -2,6 +2,7 @@ const mongoose = require("../../connection");
 const v1SolutionSchema = require("./V1SolutionSchema");
 
 const v1StingSchema = new mongoose.Schema({
+  //ProjectID for grouping
   projectID: { type: String },
   //Author for the Sting / who needs help
   authorID: { type: String },

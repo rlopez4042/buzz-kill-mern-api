@@ -119,11 +119,14 @@ router.put(
   }
 );
 
-//*--* Some working functionality for after V1 completion. *--*//
+//*--* Some working functionality for after V2 completion. *--*//
 
-//Read all stings by authorID so users can see their own tickets
-router.get("/project/:projectID", (req, res) => {
-  Sting.find({ projectID: { _id: req.params.projectID } }).then((stings) => {
+//Delete all solution by ID within sting by ID within project by ID
+router.get("/project/:id/:stingID/:solutionsID", (req, res) => {
+  Sting.find(
+    { _id: req.params.id, stingID: req.params.stingID },
+    { $pull: { "stings.$[].solutions": { _id: req.params.solutionsID } } }
+  ).then((stings) => {
     res.json({
       status: 200,
       sting: stings,
