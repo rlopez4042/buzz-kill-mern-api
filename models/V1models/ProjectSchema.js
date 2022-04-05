@@ -2,10 +2,12 @@ const mongoose = require("../../connection");
 // const stingSchema = require("./V1StingSchema");
 
 const projectSchema = new mongoose.Schema({
-  //Person who creates the project 
+  //Person who creates the project
   director: { type: String },
   //Date the project was created
   date: { type: String },
+  //Quick description of the project
+  projectTitle: { type: String },
   //Quick description of the project
   projectDescription: { type: String },
   //Links for project repository(s)

@@ -1,18 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const Project = require("../../models/V1models/ProjectSchema");
-// models/V1models/ProjectSchema
-// const { authenticate } = require("../../middleware/authenticate");
+const Project = require("../../models/V1models/ProjectSchema.js");
+const { authenticate } = require("../../middleware/authenticate");
 
-router.post("/", (req, res) => {
+router.post("/", authenticate, (req, res) => {
   const data = req.body;
-  // const userID = req.user.id;
-  // Project.create({codeBlock:data.codeBlock, description:data.description, author:userID}).then((sting) =>
   Project.create(data).then((project) =>
     res.json({
       status: 200,
       stings: project,
-      // user: userID,
     })
   );
 });
@@ -28,7 +24,7 @@ router.get("/", (req, res) => {
 });
 
 //Delete one sting by ID
-router.delete("/:id", (req, res) => {
+router.delete("/:id", authenticate, (req, res) => {
     Project.findByIdAndDelete(req.params.id).then((project) => {
     res.json({
       status: 200,

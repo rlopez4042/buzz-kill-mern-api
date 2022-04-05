@@ -107,7 +107,7 @@ router.get("/allSolutions/:id", authenticate, (req, res) => {
 //Delete a solution
 router.put(
   "/deleteSolution/:id/:solutionsID",
-  // authenticate,
+  authenticate,
   async (req, res) => {
     Sting.findByIdAndUpdate(
       { _id: req.params.id },
@@ -136,6 +136,7 @@ router.get("/project/:projectID",
 // Read all stings by authorID so users can see their own tickets
 router.get("/profile/:authorID", 
   (req, res) => {
+    // let id = req.params.id;
     Sting.find({ authorID: { _id: req.params.authorID } }).then((stings) => {
       res.json({
         status: 200,
