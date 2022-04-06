@@ -9,12 +9,5 @@ if (process.env.NODE_ENV === "production") {
 }
 
 mongoose.connect(mongourl);
-// mongoose.connect("mongodb://localhost/vinyl-api")
 
 module.exports = mongoose;
-
-// const mongoose = require('mongoose')
-
-// mongoose.connect("mongodb://127.0.0.1/buzz-kill-mern-api")
-
-// module.exports = mongoose
