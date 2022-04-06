@@ -2,6 +2,8 @@ const mongoose = require("../../connection");
 
 const projectSchema = new mongoose.Schema({
   //Person who creates the project
+  directorID: { type: String },
+  //Person who creates the project
   director: { type: String },
   //Date the project was created
   date: { type: String },

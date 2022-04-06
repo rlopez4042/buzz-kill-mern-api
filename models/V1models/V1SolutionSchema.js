@@ -1,6 +1,8 @@
 const mongoose = require("../../connection");
 
 const V1SolutionSchema = new mongoose.Schema({
+  //ProjectID for grouping
+  projectID: { type: String },
   //Author for the Sting / who needs help
   author: { type: String },
   //Date the ticket was created
