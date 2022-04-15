@@ -99,7 +99,9 @@ router.put("/addSolution/:id", authenticate, (req, res) => {
 
 //Read
 //Find all solutions for a sting
-router.get("/allSolutions/:id", authenticate, (req, res) => {
+router.get("/allSolutions/:id", 
+// authenticate, 
+(req, res) => {
   Sting.findById(req.params.id).then((sting) => {
     res.json({
       status: 200,
